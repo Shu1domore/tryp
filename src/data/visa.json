@@ -1,0 +1,22 @@
+{
+  "JP": { "country": "日本", "policy": "单次签证需提前申请，停留15天。部分城市有免签/落地签优惠政策。", "visaFree": false },
+  "KR": { "country": "韩国", "policy": "需提前申请签证，济州岛免签30天。", "visaFree": false },
+  "TH": { "country": "泰国", "policy": "免签入境，可停留30天。", "visaFree": true },
+  "SG": { "country": "新加坡", "policy": "免签入境，可停留30天。", "visaFree": true },
+  "MY": { "country": "马来西亚", "policy": "免签入境，可停留30天。", "visaFree": true },
+  "ID": { "country": "印度尼西亚", "policy": "落地签，可停留30天，费用约$35。", "visaFree": false },
+  "VN": { "country": "越南", "policy": "需提前办理电子签或落地签。", "visaFree": false },
+  "AE": { "country": "阿联酋", "policy": "免签入境，可停留30天。", "visaFree": true },
+  "FR": { "country": "法国", "policy": "需申根签证，最长停留90天。", "visaFree": false },
+  "DE": { "country": "德国", "policy": "需申根签证，最长停留90天。", "visaFree": false },
+  "IT": { "country": "意大利", "policy": "需申根签证，最长停留90天。", "visaFree": false },
+  "ES": { "country": "西班牙", "policy": "需申根签证，最长停留90天。", "visaFree": false },
+  "GB": { "country": "英国", "policy": "需提前办理签证，标准访问签证停留6个月。", "visaFree": false },
+  "US": { "country": "美国", "policy": "需提前办理B1/B2签证，面签。", "visaFree": false },
+  "AU": { "country": "澳大利亚", "policy": "需提前办理签证（电子签ETA）。", "visaFree": false },
+  "NZ": { "country": "新西兰", "policy": "需提前办理签证。", "visaFree": false },
+  "MV": { "country": "马尔代夫", "policy": "落地签，免费停留30天。", "visaFree": true },
+  "LK": { "country": "斯里兰卡", "policy": "电子签(ETA)，可停留30天。", "visaFree": false },
+  "KH": { "country": "柬埔寨", "policy": "落地签，可停留30天，费用约$30。", "visaFree": false },
+  "PH": { "country": "菲律宾", "policy": "需提前办理签证，停留30天。", "visaFree": false }
+}
