@@ -23,7 +23,7 @@ export default function PackingList({ title, items }) {
       </div>
       <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 mb-3">
         <div
-          className={`h-1.5 rounded-full transition-all duration-300 ${allDone ? "bg-green-500" : "bg-indigo-500"}`}
+          className={`h-1.5 rounded-full transition-all duration-300 ${allDone ? "bg-green-500" : "bg-cyan-500"}`}
           style={{ width: `${(checkedCount / total) * 100}%` }}
         />
       </div>
@@ -43,7 +43,7 @@ export default function PackingList({ title, items }) {
             </div>
             <span className={`flex-1 transition-colors ${checked[i] ? "line-through text-gray-400 dark:text-gray-500" : "text-gray-700 dark:text-gray-200"}`}>
               {item.name}
-              {item.count > 1 && <span className="text-gray-400 dark:text-gray-500 ml-1">×{item.count}</span>}
+              {item.count > 1 && <span className="text-gray-400 dark:text-gray-500 ml-1">x{item.count}</span>}
               {item.note && <span className="text-gray-400 dark:text-gray-500 ml-1">({item.note})</span>}
             </span>
           </li>

@@ -18,7 +18,6 @@ export default function Results({ data }) {
 
   return (
     <div className="mt-8 space-y-4 animate-fade-in">
-      {/* Trip summary */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-colors">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
           {country} · {city}
@@ -28,7 +27,6 @@ export default function Results({ data }) {
         </p>
       </div>
 
-      {/* Destination warnings */}
       {packingList.warnings?.length > 0 && (
         <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 animate-fade-in">
           <p className="text-sm font-semibold text-amber-800 dark:text-amber-300 mb-2">⚠️ 目的地注意事项</p>
@@ -43,7 +41,7 @@ export default function Results({ data }) {
         </div>
       )}
 
-      {/* Priority order: documents > visa > weather > clothing > electronics > toiletries > cash > cards > optional */}
+      {/* Open by default: documents, visa, weather, clothing */}
 
       <Section title={categoryLabels.documents} icon="📄" defaultOpen={true} badge={`${packingList.documents.length}件`}>
         <PackingList title={categoryLabels.documents} items={packingList.documents} />
@@ -68,23 +66,25 @@ export default function Results({ data }) {
         <PackingList title={categoryLabels.clothing} items={packingList.clothing} />
       </Section>
 
-      <Section title={categoryLabels.electronics} icon="🔌" defaultOpen={true} badge={`${packingList.electronics.length}件`}>
+      {/* Collapsed by default: electronics, toiletries, cash, cards, optional */}
+
+      <Section title={categoryLabels.electronics} icon="🔌" defaultOpen={false} badge={`${packingList.electronics.length}件`}>
         <PackingList title={categoryLabels.electronics} items={packingList.electronics} />
       </Section>
 
-      <Section title={categoryLabels.toiletries} icon="🧴" defaultOpen={true} badge={`${packingList.toiletries.length}件`}>
+      <Section title={categoryLabels.toiletries} icon="🧴" defaultOpen={false} badge={`${packingList.toiletries.length}件`}>
         <PackingList title={categoryLabels.toiletries} items={packingList.toiletries} />
       </Section>
 
-      <Section title="现金预算" icon="💰" defaultOpen={true} badge="带多少钱">
+      <Section title="现金预算" icon="💰" defaultOpen={false} badge="带多少钱">
         <CashBudget city={city} days={days} />
       </Section>
 
-      <Section title="信用卡优惠" icon="💳" defaultOpen={true} badge="带对卡省更多">
+      <Section title="信用卡优惠" icon="💳" defaultOpen={false} badge="带对卡省更多">
         <CardPromos countryCode={countryCode} country={country} city={city} />
       </Section>
 
-      <Section title={categoryLabels.optional} icon="🎒" defaultOpen={true} badge={`${packingList.optional.length}件`}>
+      <Section title={categoryLabels.optional} icon="🎒" defaultOpen={false} badge={`${packingList.optional.length}件`}>
         <PackingList title={categoryLabels.optional} items={packingList.optional} />
       </Section>
     </div>

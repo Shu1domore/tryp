@@ -1,10 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
   <!-- Rounded square frame -->
-  <rect x="8" y="8" width="104" height="104" rx="24" fill="#4F46E5"/>
+  <rect x="8" y="8" width="104" height="104" rx="24" fill="#0891B2"/>
 
-  <!-- Paper airplane that doubles as a checkmark -->
-  <!-- The airplane flies upper-right, its trailing edge/tail forms a checkmark shape -->
-  <!-- Checkmark stroke: starts bottom-left, goes to bottom-center, then sweeps up-right as the airplane body -->
+  <!-- Paper airplane whose trailing edge forms a checkmark -->
   <path
     d="M30 68 L50 85 L92 32"
     stroke="white"
@@ -14,14 +12,14 @@
     fill="none"
   />
 
-  <!-- Small paper airplane wing detail at the tip (top-right) to make it read as a plane -->
+  <!-- Wing detail at the tip to read as a paper airplane -->
   <path
     d="M92 32 L78 38 L85 45 Z"
     fill="white"
-    opacity="0.6"
+    opacity="0.55"
   />
 
-  <!-- Subtle trail/motion lines behind the airplane -->
-  <line x1="62" y1="52" x2="48" y2="52" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
-  <line x1="56" y1="60" x2="40" y2="60" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+  <!-- Motion trail lines -->
+  <line x1="62" y1="52" x2="46" y2="52" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+  <line x1="55" y1="60" x2="38" y2="60" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
 </svg>

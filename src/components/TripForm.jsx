@@ -1,9 +1,32 @@
 import { useState, useMemo } from "react"
 import { destinations } from "../data/destinations"
 
-const inputClass = "w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-indigo-400 focus:border-transparent outline-none transition-colors"
+const inputClass = "w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition-colors"
 const dateClass = `${inputClass} max-w-full box-border text-sm sm:text-base`
-const checkClass = "flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
+
+function YesNo({ label, value, onChange }) {
+  return (
+    <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+      <span className="text-sm text-gray-700 dark:text-gray-300">{label}</span>
+      <div className="flex gap-1 bg-gray-200 dark:bg-gray-600 rounded-lg p-0.5">
+        <button
+          type="button"
+          onClick={() => onChange(true)}
+          className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${value ? "bg-cyan-600 text-white shadow-sm" : "text-gray-400 dark:text-gray-400 hover:text-gray-600"}`}
+        >
+          Yes
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange(false)}
+          className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${!value ? "bg-gray-500 dark:bg-gray-400 text-white shadow-sm" : "text-gray-400 dark:text-gray-400 hover:text-gray-600"}`}
+        >
+          No
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export default function TripForm({ onSubmit, loading }) {
   const [countryCode, setCountryCode] = useState("")
@@ -81,37 +104,22 @@ export default function TripForm({ onSubmit, loading }) {
       </div>
 
       {days && (
-        <p className="text-sm text-indigo-600 dark:text-indigo-400 font-medium animate-fade-in">
+        <p className="text-sm text-cyan-600 dark:text-cyan-400 font-medium animate-fade-in">
           共 {days} 天
         </p>
       )}
 
-      <div>
-        <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">出行选项</p>
-        <div className="grid grid-cols-2 gap-3">
-          <label className={checkClass}>
-            <input type="checkbox" checked={hasLaundry} onChange={(e) => setHasLaundry(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-            🧺 酒店有洗衣机
-          </label>
-          <label className={checkClass}>
-            <input type="checkbox" checked={useDisposableUnderwear} onChange={(e) => setUseDisposableUnderwear(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-            🩲 带一次性内裤
-          </label>
-          <label className={checkClass}>
-            <input type="checkbox" checked={bringLaptop} onChange={(e) => setBringLaptop(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-            💻 需要带电脑
-          </label>
-          <label className={checkClass}>
-            <input type="checkbox" checked={bringCamera} onChange={(e) => setBringCamera(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-            📷 需要带相机
-          </label>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <YesNo label="想在酒店洗衣服吗？" value={hasLaundry} onChange={setHasLaundry} />
+        <YesNo label="想带一次性内裤吗？" value={useDisposableUnderwear} onChange={setUseDisposableUnderwear} />
+        <YesNo label="想带笔记本电脑吗？" value={bringLaptop} onChange={setBringLaptop} />
+        <YesNo label="想带相机拍照吗？" value={bringCamera} onChange={setBringCamera} />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 active:scale-[0.98] transition-all disabled:bg-indigo-300 dark:disabled:bg-indigo-800 disabled:cursor-not-allowed"
+        className="w-full py-3 bg-cyan-600 text-white font-medium rounded-lg hover:bg-cyan-700 active:scale-[0.98] transition-all disabled:bg-cyan-300 dark:disabled:bg-cyan-800 disabled:cursor-not-allowed"
       >
         {loading ? "生成中..." : "生成打包清单"}
       </button>

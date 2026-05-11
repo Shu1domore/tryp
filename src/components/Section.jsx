@@ -14,7 +14,7 @@ export default function Section({ title, icon, defaultOpen = true, badge, childr
           {icon && <span className="text-lg">{icon}</span>}
           <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">{title}</h3>
           {badge && (
-            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300">
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
               {badge}
             </span>
           )}
