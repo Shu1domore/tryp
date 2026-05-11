@@ -18,6 +18,7 @@ export default function Results({ data }) {
 
   return (
     <div className="mt-8 space-y-4 animate-fade-in">
+      {/* Trip summary */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-colors">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
           {country} · {city}
@@ -26,6 +27,27 @@ export default function Results({ data }) {
           {data.startDate} → {data.endDate}（{days} 天）· 共 {totalItems} 件物品
         </p>
       </div>
+
+      {/* Destination warnings */}
+      {packingList.warnings?.length > 0 && (
+        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 animate-fade-in">
+          <p className="text-sm font-semibold text-amber-800 dark:text-amber-300 mb-2">⚠️ 目的地注意事项</p>
+          <ul className="space-y-1">
+            {packingList.warnings.map((w, i) => (
+              <li key={i} className="text-sm text-amber-700 dark:text-amber-400 flex gap-2">
+                <span className="flex-shrink-0">·</span>
+                <span>{w}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Priority order: documents > visa > weather > clothing > electronics > toiletries > cash > cards > optional */}
+
+      <Section title={categoryLabels.documents} icon="📄" defaultOpen={true} badge={`${packingList.documents.length}件`}>
+        <PackingList title={categoryLabels.documents} items={packingList.documents} />
+      </Section>
 
       {visa && (
         <Section title="签证信息" icon="🛂" defaultOpen={true}>
@@ -38,14 +60,6 @@ export default function Results({ data }) {
         </Section>
       )}
 
-      <Section title="信用卡优惠" icon="💳" defaultOpen={true} badge="带对卡省更多">
-        <CardPromos countryCode={countryCode} country={country} city={city} />
-      </Section>
-
-      <Section title="现金预算" icon="💰" defaultOpen={true} badge="带多少钱">
-        <CashBudget city={city} days={days} />
-      </Section>
-
       <Section title="天气预报" icon="🌤️" defaultOpen={true} badge={`均温${avgTemp.toFixed(0)}°C`}>
         <WeatherCard weather={weather} avgTemp={avgTemp} />
       </Section>
@@ -54,19 +68,23 @@ export default function Results({ data }) {
         <PackingList title={categoryLabels.clothing} items={packingList.clothing} />
       </Section>
 
-      <Section title={categoryLabels.documents} icon="📄" defaultOpen={true} badge={`${packingList.documents.length}件`}>
-        <PackingList title={categoryLabels.documents} items={packingList.documents} />
-      </Section>
-
-      <Section title={categoryLabels.electronics} icon="🔌" defaultOpen={false} badge={`${packingList.electronics.length}件`}>
+      <Section title={categoryLabels.electronics} icon="🔌" defaultOpen={true} badge={`${packingList.electronics.length}件`}>
         <PackingList title={categoryLabels.electronics} items={packingList.electronics} />
       </Section>
 
-      <Section title={categoryLabels.toiletries} icon="🧴" defaultOpen={false} badge={`${packingList.toiletries.length}件`}>
+      <Section title={categoryLabels.toiletries} icon="🧴" defaultOpen={true} badge={`${packingList.toiletries.length}件`}>
         <PackingList title={categoryLabels.toiletries} items={packingList.toiletries} />
       </Section>
 
-      <Section title={categoryLabels.optional} icon="🎒" defaultOpen={false} badge={`${packingList.optional.length}件`}>
+      <Section title="现金预算" icon="💰" defaultOpen={true} badge="带多少钱">
+        <CashBudget city={city} days={days} />
+      </Section>
+
+      <Section title="信用卡优惠" icon="💳" defaultOpen={true} badge="带对卡省更多">
+        <CardPromos countryCode={countryCode} country={country} city={city} />
+      </Section>
+
+      <Section title={categoryLabels.optional} icon="🎒" defaultOpen={true} badge={`${packingList.optional.length}件`}>
         <PackingList title={categoryLabels.optional} items={packingList.optional} />
       </Section>
     </div>

@@ -1,8 +1,10 @@
 import { classifyClimate } from "./weather"
+import { destinationTips } from "../data/destination-tips"
 
-export function generatePackingList(days, avgTemp, { hasLaundry, useDisposableUnderwear }) {
+export function generatePackingList(days, avgTemp, { hasLaundry, useDisposableUnderwear, bringLaptop, bringCamera, countryCode }) {
   const climate = classifyClimate(avgTemp)
   const factor = hasLaundry ? 0.5 : 1
+  const tips = destinationTips[countryCode]
 
   const tops = Math.ceil(days * factor)
   const underwear = useDisposableUnderwear ? 0 : Math.ceil((days + 1) * factor)
@@ -45,15 +47,31 @@ export function generatePackingList(days, avgTemp, { hasLaundry, useDisposableUn
     { name: "身份证", count: 1, category: "documents" },
     { name: "签证材料", count: 1, category: "documents" },
     { name: "机票/酒店确认单", count: 1, category: "documents" },
+    { name: "护照复印件（备用）", count: 1, category: "documents" },
   ]
 
+  const plugNote = tips?.plugType ? `（${tips.plugType}）` : ""
   const electronics = [
+    { name: "手机", count: 1, category: "electronics" },
     { name: "充电器", count: 1, category: "electronics" },
     { name: "充电宝", count: 1, category: "electronics" },
-    { name: "手机", count: 1, category: "electronics" },
+    { name: `转换插头${plugNote}`, count: 1, category: "electronics" },
     { name: "耳机", count: 1, category: "electronics" },
-    { name: "转换插头", count: 1, category: "electronics" },
   ]
+
+  if (bringLaptop) {
+    electronics.push(
+      { name: "笔记本电脑", count: 1, category: "electronics" },
+      { name: "电脑充电器", count: 1, category: "electronics" },
+    )
+  }
+  if (bringCamera) {
+    electronics.push(
+      { name: "相机", count: 1, category: "electronics" },
+      { name: "相机电池/充电器", count: 1, category: "electronics" },
+      { name: "存储卡", count: 1, category: "electronics" },
+    )
+  }
 
   const toiletries = [
     { name: "牙刷牙膏", count: 1, category: "toiletries" },
@@ -70,17 +88,32 @@ export function generatePackingList(days, avgTemp, { hasLaundry, useDisposableUn
   }
 
   const optional = [
-    { name: "雨伞/雨衣", count: 1, category: "optional", checked: false },
-    { name: "颈枕", count: 1, category: "optional", checked: false },
-    { name: "眼罩耳塞", count: 1, category: "optional", checked: false },
-    { name: "药品（感冒/肠胃/创可贴）", count: 1, category: "optional", checked: false },
-    { name: "零食", count: 1, category: "optional", checked: false },
-    { name: "书/Kindle", count: 1, category: "optional", checked: false },
-    { name: "相机", count: 1, category: "optional", checked: false },
-    { name: "运动装备", count: 1, category: "optional", checked: false },
+    { name: "雨伞/雨衣", count: 1, category: "optional" },
+    { name: "颈枕", count: 1, category: "optional" },
+    { name: "眼罩耳塞", count: 1, category: "optional" },
+    { name: "药品（感冒/肠胃/创可贴）", count: 1, category: "optional" },
+    { name: "零食", count: 1, category: "optional" },
+    { name: "书/Kindle", count: 1, category: "optional" },
+    { name: "运动装备", count: 1, category: "optional" },
   ]
 
-  return { clothing, documents, electronics, toiletries, optional }
+  // Add destination-specific items
+  if (tips?.extraItems) {
+    for (const item of tips.extraItems) {
+      const list = { clothing, documents, electronics, toiletries, optional }[item.category]
+      if (!list) continue
+      const existing = list.find((i) => i.name.includes(item.name.split("（")[0]))
+      if (item.override && existing) {
+        existing.name = item.name
+      } else if (!existing) {
+        list.push({ name: item.name, count: 1, category: item.category })
+      }
+    }
+  }
+
+  const warnings = tips?.warnings || []
+
+  return { clothing, documents, electronics, toiletries, optional, warnings }
 }
 
 export const categoryLabels = {

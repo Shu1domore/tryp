@@ -15,7 +15,7 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const { countryCode, city, startDate, endDate, hasLaundry, useDisposableUnderwear } = formData
+      const { countryCode, city, startDate, endDate, hasLaundry, useDisposableUnderwear, bringLaptop, bringCamera } = formData
       const start = new Date(startDate)
       const end = new Date(endDate)
       const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24))
@@ -36,7 +36,7 @@ function App() {
       const weather = await fetchWeather(coords.lat, coords.lon, startDate, endDate)
       const avgTemp = weather.temperature_2m_max.reduce((a, b) => a + b, 0) / weather.temperature_2m_max.length
 
-      const packingList = generatePackingList(days, avgTemp, { hasLaundry, useDisposableUnderwear })
+      const packingList = generatePackingList(days, avgTemp, { hasLaundry, useDisposableUnderwear, bringLaptop, bringCamera, countryCode })
       const visa = visaData[countryCode]
       const dest = destinations.find((d) => d.code === countryCode)
 

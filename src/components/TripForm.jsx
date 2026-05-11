@@ -3,6 +3,7 @@ import { destinations } from "../data/destinations"
 
 const inputClass = "w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:ring-2 focus:ring-indigo-400 focus:border-transparent outline-none transition-colors"
 const dateClass = `${inputClass} max-w-full box-border text-sm sm:text-base`
+const checkClass = "flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
 
 export default function TripForm({ onSubmit, loading }) {
   const [countryCode, setCountryCode] = useState("")
@@ -11,6 +12,8 @@ export default function TripForm({ onSubmit, loading }) {
   const [endDate, setEndDate] = useState("")
   const [hasLaundry, setHasLaundry] = useState(false)
   const [useDisposableUnderwear, setUseDisposableUnderwear] = useState(false)
+  const [bringLaptop, setBringLaptop] = useState(false)
+  const [bringCamera, setBringCamera] = useState(false)
 
   const selectedCountry = useMemo(
     () => destinations.find((d) => d.code === countryCode),
@@ -30,7 +33,7 @@ export default function TripForm({ onSubmit, loading }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit({ countryCode, city, startDate, endDate, hasLaundry, useDisposableUnderwear })
+    onSubmit({ countryCode, city, startDate, endDate, hasLaundry, useDisposableUnderwear, bringLaptop, bringCamera })
   }
 
   const today = new Date().toISOString().split("T")[0]
@@ -83,15 +86,26 @@ export default function TripForm({ onSubmit, loading }) {
         </p>
       )}
 
-      <div className="flex flex-wrap gap-4">
-        <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
-          <input type="checkbox" checked={hasLaundry} onChange={(e) => setHasLaundry(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-          酒店有洗衣机
-        </label>
-        <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
-          <input type="checkbox" checked={useDisposableUnderwear} onChange={(e) => setUseDisposableUnderwear(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
-          带一次性内裤
-        </label>
+      <div>
+        <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">出行选项</p>
+        <div className="grid grid-cols-2 gap-3">
+          <label className={checkClass}>
+            <input type="checkbox" checked={hasLaundry} onChange={(e) => setHasLaundry(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
+            🧺 酒店有洗衣机
+          </label>
+          <label className={checkClass}>
+            <input type="checkbox" checked={useDisposableUnderwear} onChange={(e) => setUseDisposableUnderwear(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
+            🩲 带一次性内裤
+          </label>
+          <label className={checkClass}>
+            <input type="checkbox" checked={bringLaptop} onChange={(e) => setBringLaptop(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
+            💻 需要带电脑
+          </label>
+          <label className={checkClass}>
+            <input type="checkbox" checked={bringCamera} onChange={(e) => setBringCamera(e.target.checked)} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400" />
+            📷 需要带相机
+          </label>
+        </div>
       </div>
 
       <button
