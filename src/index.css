@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+/* Prevent mobile overflow for native date inputs */
+html, body {
+  overflow-x: hidden;
+}
+
+input[type="date"] {
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Subtle animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 800px; }
+}
+
+@keyframes check-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+@utility animate-slide-down {
+  animation: slide-down 0.2s ease-out;
+}
+
+@utility animate-check-pop {
+  animation: check-pop 0.15s ease-out;
+}

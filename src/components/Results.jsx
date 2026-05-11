@@ -17,21 +17,21 @@ export default function Results({ data }) {
   ].length
 
   return (
-    <div className="mt-8 space-y-4">
-      <div className="bg-white rounded-2xl shadow-lg p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-1">
+    <div className="mt-8 space-y-4 animate-fade-in">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 transition-colors">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">
           {country} · {city}
         </h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           {data.startDate} → {data.endDate}（{days} 天）· 共 {totalItems} 件物品
         </p>
       </div>
 
       {visa && (
         <Section title="签证信息" icon="🛂" defaultOpen={true}>
-          <p className="text-sm text-gray-700">{visa.policy}</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">{visa.policy}</p>
           {visa.visaFree && (
-            <span className="inline-block mt-2 px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded-full">
+            <span className="inline-block mt-2 px-2 py-0.5 text-xs font-medium bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 rounded-full">
               免签
             </span>
           )}

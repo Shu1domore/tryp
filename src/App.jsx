@@ -60,11 +60,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold text-indigo-700">✈️ Tryp</h1>
-          <p className="text-sm text-gray-500">智能旅行打包助手</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
+      <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-3">
+          <img src="/logo.svg" alt="Tryp" className="w-9 h-9" />
+          <div>
+            <h1 className="text-xl font-bold text-indigo-700 dark:text-indigo-400 leading-tight">Tryp</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400">智能旅行打包助手</p>
+          </div>
         </div>
       </header>
 
@@ -72,7 +75,7 @@ function App() {
         <TripForm onSubmit={handleSubmit} loading={loading} />
 
         {error && (
-          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 animate-fade-in">
             {error}
           </div>
         )}
