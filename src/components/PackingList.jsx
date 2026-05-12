@@ -43,8 +43,8 @@ export default function PackingList({ title, items }) {
             </div>
             <span className={`flex-1 transition-colors ${checked[i] ? "line-through text-gray-400 dark:text-gray-500" : "text-gray-700 dark:text-gray-200"}`}>
               {item.name}
-              {item.count > 1 && <span className="text-gray-400 dark:text-gray-500 ml-1">x{item.count}</span>}
-              {item.note && <span className="text-gray-400 dark:text-gray-500 ml-1">({item.note})</span>}
+              {item.count > 1 && <span className="text-gray-400 dark:text-gray-500 ml-1">×{item.count}</span>}
+              {item.rule && <span className="text-gray-400 dark:text-gray-500 ml-1">{item.rule}</span>}
             </span>
           </li>
         ))}
