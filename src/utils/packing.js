@@ -11,11 +11,12 @@ export function generatePackingList(days, avgTemp, { hasLaundry, useDisposableUn
   const socks = Math.ceil(days * factor)
   const pants = Math.ceil((days / 3) * factor)
 
+  const laundryNote = hasLaundry ? "，可洗衣减半" : ""
   const clothing = [
-    { name: "上衣/T恤", count: tops, category: "clothing" },
-    { name: "内裤", count: underwear, category: "clothing", note: useDisposableUnderwear ? "已选一次性内裤" : null },
-    { name: "袜子", count: socks, category: "clothing" },
-    { name: "裤子/裙子", count: pants, category: "clothing" },
+    { name: `上衣/T恤（每天1件${laundryNote}）`, count: tops, category: "clothing" },
+    { name: `内裤（天数+1${laundryNote}）`, count: underwear, category: "clothing", note: useDisposableUnderwear ? "已选一次性内裤" : null },
+    { name: `袜子（每天1双${laundryNote}）`, count: socks, category: "clothing" },
+    { name: `裤子/裙子（每3天1条${laundryNote}）`, count: pants, category: "clothing" },
     { name: "睡衣", count: 1, category: "clothing" },
   ]
 

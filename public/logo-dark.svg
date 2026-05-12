@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Dark mode: iOS-style dark gray background (#1C1C1E) with teal airplane -->
+  <rect x="8" y="8" width="104" height="104" rx="24" fill="#1C1C1E"/>
+
+  <path
+    d="M30 68 L50 85 L92 32"
+    stroke="#0891B2"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <path
+    d="M92 32 L78 38 L85 45 Z"
+    fill="#0891B2"
+    opacity="0.55"
+  />
+
+  <line x1="62" y1="52" x2="46" y2="52" stroke="#0891B2" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+  <line x1="55" y1="60" x2="38" y2="60" stroke="#0891B2" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+</svg>
