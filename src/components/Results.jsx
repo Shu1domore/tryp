@@ -58,7 +58,7 @@ export default function Results({ data }) {
         </Section>
       )}
 
-      <Section title="天气预报" icon="🌤️" defaultOpen={true} badge={`均温${avgTemp.toFixed(0)}°C`}>
+      <Section title={weather.isHistorical ? "天气参考（去年同期）" : "天气预报"} icon="🌤️" defaultOpen={true} badge={`均温${avgTemp.toFixed(0)}°C`}>
         <WeatherCard weather={weather} avgTemp={avgTemp} />
       </Section>
 

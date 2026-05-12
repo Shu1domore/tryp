@@ -3,6 +3,9 @@ import { weatherCodeToEmoji } from "../utils/weather"
 export default function WeatherCard({ weather, avgTemp }) {
   return (
     <div>
+      {weather.isHistorical && (
+        <p className="text-xs text-amber-600 dark:text-amber-400 mb-2">参考去年同期数据，仅供打包参考</p>
+      )}
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
         平均气温 <span className="font-medium text-gray-800 dark:text-gray-100">{avgTemp.toFixed(1)}°C</span>
       </p>
